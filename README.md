@@ -1,7 +1,7 @@
 # bmad-distilled
 
-A distilled, self-contained version of the BMAD method for AI-assisted product, architecture, engineering, and testing workflows.
+A distilled, self-contained toolkit of BMAD roles and capability playbooks for AI-assisted product, architecture, engineering, and testing workflows.
 
-This repository packages BMAD roles and capabilities as markdown files so an AI agent can act as a virtual team of specialists without requiring a full BMAD installation.
+This repository turns BMAD into a lightweight, markdown-first virtual team that helps AI agents perform planning, design, implementation, and testing without a full BMAD installation.
 
 See [distilled/README.md](distilled/README.md) for the full user guide.
