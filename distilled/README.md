@@ -1,89 +1,131 @@
 # 📖 User Guide — BMAD Roles (distilled)
 
-This kit turns the **BMAD** method into a "virtual department": each role is an AI specialist you *call into the meeting* when needed. Everything is **self-contained** — no BMAD install, no python, just markdown files.
+This kit turns the **BMAD** method into a lightweight "virtual department" for software work. Each role is an AI specialist you can call into the conversation when a task needs deeper expertise. It is designed to be dropped into the documentation of a project and used as a practical playbook for better, more structured AI collaboration.
 
 ---
 
-## 1. Quick start (3 steps)
+## 1. Why this is useful
 
-1. **Open [`roster.md`](roster.md)** → pick the role that matches the work.
-2. **Ask the AI to play that role** and load the capability file you need. Template:
-   > *"Play the role of **Winston** in `distilled/roster.md`, following `distilled/capabilities/architecture.md`. Design the architecture for: **[project description]**."*
-3. **Hand off** to the next role when done (see the flow in section 3).
+This works especially well when you want an AI to behave less like a generic assistant and more like a specialist team.
 
-> 💡 Load only **1–3 files per session** (persona + 1–2 capabilities) to save tokens. Don't load the whole folder.
+- Put it inside the docs of a project so the agent can reference it as part of the project context.
+- Use it when a prompt needs a role such as architect, PM, developer, tester, or UX designer.
+- Use it to make outputs more accurate, more structured, and more aligned with real software delivery practices.
+- Use it to spawn a small team of agents and let them play different roles in a discussion, review, or problem-solving session.
 
 ---
 
-## 2. Who's on the team? (8 roles)
+## 2. How I use it in practice
 
-| Role | Call when you need | Key capabilities |
+### A. Drop it into project docs
+
+Add this folder to the documentation area of a project so the AI can see the roles and capabilities as part of the project’s context.
+
+This is useful when the project already has:
+- requirements
+- architecture notes
+- implementation plans
+- technical constraints
+- team conventions
+
+The kit then acts like a reusable operating manual for the AI.
+
+### B. Use it when a prompt needs a specialist role
+
+Instead of asking a general question, ask the AI to play a specific role.
+
+Example:
+> "Play the role of Winston in the BMAD roster and design the architecture for this feature."
+
+This tends to produce better answers because the AI is following a clear domain-specific workflow instead of answering in a vague, general way.
+
+### C. Spawn a team of agents
+
+For harder problems, you can bring multiple roles into the same conversation.
+
+A common pattern is:
+- Mary for analysis and discovery
+- John for planning and requirements
+- Winston for architecture
+- Amelia for implementation
+- Murat for testing and quality
+
+That creates a more realistic collaboration flow where each role contributes its part of the solution.
+
+---
+
+## 3. Quick start
+
+1. Open [roster.md](roster.md) and pick the role that matches the task.
+2. Ask the AI to play that role and load the capability file you need.
+3. For larger work, bring in multiple roles and let them collaborate.
+
+Example template:
+> "Play the role of Winston in distilled/roster.md, following distilled/capabilities/architecture.md. Design the architecture for: [project description]."
+
+> 💡 For most sessions, load only 1–3 files (one role + one or two capabilities) to stay token-efficient.
+
+---
+
+## 4. Who's on the team?
+
+| Role | Use it when you need | Key capabilities |
 |---|---|---|
-| 📊 **Mary** — Analyst | Research, brainstorming, briefs, idea validation | brainstorming, product-brief, market/domain/technical-research, prfaq, forge-idea |
-| 📚 **Paige** — Tech Writer | Documentation, diagrams, editing, project-context | document-project, generate-project-context, editorial-review-* |
-| 📋 **John** — PM | Writing the PRD, epic/story breakdown, readiness gate | prd, create-epics-and-stories, check-implementation-readiness |
-| 🎨 **Sally** — UX | Experience design, user flows | ux |
-| 🏗️ **Winston** — Architect | System design, tech stack, **database**, spec | architecture, spec |
-| 💻 **Amelia** — Dev | Coding each story, quick-dev, code-review | dev-story, quick-dev, code-review, create-story |
-| 🧪 **Murat** — Test Architect | Test strategy, edge cases, CI, traceability | testarch-* (8 files) |
-| 🛠️ **Builder** | Creating new agents/workflows/modules | builder-agent, workflow-builder, module-builder |
+| 📊 **Mary** — Analyst | Research, brainstorming, idea validation | brainstorming, product-brief, market/domain/technical-research, prfaq, forge-idea |
+| 📚 **Paige** — Tech Writer | Documentation, editing, project context | document-project, generate-project-context, editorial-review-* |
+| 📋 **John** — PM | Requirements, PRD, story breakdown, readiness | prd, create-epics-and-stories, check-implementation-readiness |
+| 🎨 **Sally** — UX | UX flows and experience design | ux |
+| 🏗️ **Winston** — Architect | Architecture, system design, database decisions | architecture, spec |
+| 💻 **Amelia** — Dev | Implementation, coding tasks, reviews | dev-story, quick-dev, code-review, create-story |
+| 🧪 **Murat** — Test Architect | Test strategy, edge cases, CI, traceability | testarch-* |
+| 🛠️ **Builder** | New agents, workflows, modules | builder-agent, workflow-builder, module-builder |
 
-There are also **shared capabilities** any role can invoke: `advanced-elicitation`, `party-mode`, `review-adversarial-general`, `review-edge-case-hunter`.
-
----
-
-## 3. The standard project flow (4 phases)
-
-```
-Phase 1 — ANALYSIS      📊 Mary          → brainstorm / research / product-brief
-Phase 2 — PLANNING      📋 John + 🎨 Sally → PRD + UX design
-Phase 3 — SOLUTIONING   🏗️ Winston        → architecture (incl. database) + epic/story breakdown
-Phase 4 — BUILD         💻 Amelia → 🧪 Murat → code each story, then test
-                         ↑___ repeat per sprint ___↓
-```
-
-Each phase produces an artifact that feeds the next:
-`brief → PRD → architecture → story → code → test`
-
-> ⚠️ BMAD principle: **lock the architecture (incl. database) BEFORE breaking work into stories** — because database/API/tech-stack decisions shape how work is split.
+There are also shared capabilities that can be used across roles: advanced-elicitation, party-mode, review-adversarial-general, and review-edge-case-hunter.
 
 ---
 
-## 4. Example prompts by situation
+## 5. Recommended usage patterns
 
-**Vague idea, want to explore it:**
-> *"Play Mary following `capabilities/brainstorming.md`; brainstorm this idea with me: [X]."*
+### Single-role expert mode
+Use one role when you want a focused specialist response.
 
-**Idea is clear, need a requirements doc:**
-> *"Play John following `capabilities/prd.md`; write a PRD for: [paste brief]."*
+### Team mode
+Bring several roles together for planning, architecture, implementation, or review.
 
-**Need system + database design:**
-> *"Play Winston following `capabilities/architecture.md`; design the architecture + database schema for: [paste PRD]."*
+### Handoff mode
+Have one role produce an artifact, then hand off to the next role for the next phase.
 
-**Code a story:**
-> *"Play Amelia following `capabilities/dev-story.md`; implement this story: [paste story]."*
-
-**Want multiple perspectives at once (roundtable):**
-> *"Use `capabilities/party-mode.md`; have Winston + Amelia + Murat debate whether this schema migration is safe."*
+### Review mode
+Ask a different role to challenge the solution, test assumptions, or improve quality.
 
 ---
 
-## 5. Tips
+## 6. Example prompts
 
-- **Token-thrift:** don't paste `roster.md` plus many capabilities. Pick exactly one role + the capability you need.
-- **Handoff:** at the end of each phase, ask the AI to *"summarize the artifact to hand off to [next role]"*, then open a fresh session with that role.
-- **Session memory:** for long work, ask the AI to keep an append-only markdown log so you can resume later.
-- **Database:** currently lives under 🏗️ Winston (matching BMAD's original design). To split out a dedicated DBA role, you'd reinstall BMAD + use the Builder, then distill it in.
+**Explore an idea:**
+> "Play Mary following capabilities/brainstorming.md and help me explore this idea."
+
+**Write requirements:**
+> "Play John following capabilities/prd.md and write a PRD for this feature."
+
+**Design architecture:**
+> "Play Winston following capabilities/architecture.md and design the architecture for this system."
+
+**Implement a story:**
+> "Play Amelia following capabilities/dev-story.md and implement this story."
+
+**Run a roundtable discussion:**
+> "Use capabilities/party-mode.md and have Winston, Amelia, and Murat debate this design decision."
 
 ---
 
-## 6. Folder structure
+## 7. Folder structure
 
 ```
 distilled/
 ├── README.md           ← this file
-├── roster.md           ← the 8 roles + links to capabilities
-└── capabilities/       ← 44 self-contained capability files (one workflow each)
+├── roster.md           ← the roles and links to capabilities
+└── capabilities/       ← self-contained capability files
 ```
 
-Each `capabilities/*.md` file holds BMAD's **real method** (install machinery stripped), enough for the AI to perform the role correctly — not a shallow summary.
+Each capability file is a compact workflow guide for a specific role and task, so the AI can act with a clearer method rather than a generic answer.
